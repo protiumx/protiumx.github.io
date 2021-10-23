@@ -1,0 +1,178 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/brands.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css"
+      crossorigin="anonymous"
+    />
+    <title>Brian Mayo</title>
+    <style>
+      :root {
+        --color-highlight: #c115c7;
+      }
+
+      body {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        font-family: "Zen Kurenaido", sans-serif;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        height: 100%;
+        color: white;
+        background-color: #161616;
+        overflow-y: hidden;
+      }
+
+      .content {
+        -webkit-transform: translateY(-25%);
+        -ms-transform: translateY(-25%);
+        transform: translateY(-25%);
+        margin: 0 0.5rem;
+      }
+
+      .content h1 {
+        -webkit-box-shadow: 5px 5px 5px #cf442b;
+        box-shadow: 5px 5px 5px #cf442b;
+        font-size: 3rem;
+        border-bottom: 2px solid var(--color-highlight);
+        border-right: 2px solid var(--color-highlight);
+        line-height: 180%;
+      }
+
+      .content h1 span {
+        margin-right: 0.5rem;
+        -webkit-animation: blink-caret 0.8s step-end infinite;
+        animation: blink-caret 0.8s step-end infinite;
+      }
+
+      .content p {
+        font-size: 1.6rem;
+        line-height: 100%;
+        margin: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .content .content__cv p {
+        font-size: 1.5rem;
+      }
+
+      .content .content__cv a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .content .content__cv code {
+        font-size: 1rem;
+        /* padding: 0.5rem; */
+        /* width: 100%; */
+      }
+
+      pre {
+        background-color: #4d4d4d;
+        padding: 0.5rem;
+        color: #ececec;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        border-radius: 6px;
+      }
+
+      pre code {
+        display: block;
+        white-space: pre;
+        max-width: 100%;
+        min-width: 100px;
+        padding: 0;
+      }
+
+      .content .content__cv {
+        margin-top: 2rem;
+      }
+
+      .content .content__links {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 1rem;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        font-size: 3rem;
+        margin: 2rem 0;
+      }
+
+      .content .content__links a {
+        color: var(--color-highlight);
+      }
+
+      @-webkit-keyframes blink-caret {
+        from,
+        to {
+          color: transparent;
+        }
+        50% {
+          color: var(--color-highlight);
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          color: transparent;
+        }
+        50% {
+          color: var(--color-highlight);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="content">
+      <h1><span>></span>brian mayo</h1>
+      <p>I'm a software engineer who happens to be extremely curious.</p>
+      <p>Based in Munich, Germany.</p>
+
+      <section class="content__cv">
+        <p>_ download my <a href="/cv.pdf" download="brian_mayo">CV</a></p>
+        <pre><code>curl -o brian_mayo.pdf https://github.com/protiumx/cv.pdf</code></pre>
+      </section>
+
+      <section class="content__links">
+        <a href="https://github.com/protiumx"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/bdmayo/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </section>
+    </section>
+  </body>
+</html>

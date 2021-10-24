@@ -3,6 +3,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Brian Mayo - Short info page" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,6 +31,8 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
+        background-color: #161616;
+        color: white;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -41,33 +45,31 @@
         -ms-flex-pack: center;
         justify-content: center;
         height: 100%;
-        color: white;
         margin: 0;
-        padding: 0;
-        background-color: #161616;
         overflow-y: hidden;
+        padding: 0;
         width: 100vw;
       }
 
       .content {
         margin: 0 0.5rem;
-        width: 600px;
         max-width: 92%;
+        width: 600px;
       }
 
       .content h1 {
         -webkit-box-shadow: 5px 5px 5px #cf442b;
         box-shadow: 5px 5px 5px #cf442b;
-        font-size: 3rem;
         border-bottom: 2px solid var(--color-highlight);
         border-right: 2px solid var(--color-highlight);
+        font-size: 3rem;
         line-height: 180%;
       }
 
       .content h1 span {
-        margin-right: 0.5rem;
         -webkit-animation: blink-caret 0.8s step-end infinite;
         animation: blink-caret 0.8s step-end infinite;
+        margin-right: 0.5rem;
       }
 
       .content p {
@@ -91,20 +93,20 @@
 
       pre {
         background-color: #4d4d4d;
-        padding: 0.5rem;
+        border-radius: 6px;
         color: #ececec;
-        overflow: auto;
         font-size: 85%;
         line-height: 1.45;
-        border-radius: 6px;
+        overflow: auto;
+        padding: 0.5rem;
       }
 
       pre code {
         display: block;
-        white-space: pre;
         max-width: 100%;
         min-width: 100px;
         padding: 0;
+        white-space: pre;
       }
 
       .content .content__cv {
@@ -112,6 +114,7 @@
       }
 
       .content .content__links {
+        align-items: center;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -119,14 +122,13 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: row;
         flex-direction: row;
+        font-size: 3rem;
         -webkit-box-align: center;
         -ms-flex-align: center;
-        align-items: center;
         gap: 1rem;
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-        font-size: 3rem;
         margin: 2rem 0;
       }
 

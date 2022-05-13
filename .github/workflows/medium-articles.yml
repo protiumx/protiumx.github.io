@@ -15,4 +15,4 @@ jobs:
         with:
           feed_list: "https://medium.com/feed/@protiumx"
           readme_path: "./index.html"
-          template: '<li><a href="$url" target="_blank">$title</a></li>'
+          template: '<li><a href="$url" target="_blank">$title</a></li>$newline'

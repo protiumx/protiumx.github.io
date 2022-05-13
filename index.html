@@ -43,6 +43,29 @@
       width: 100vw;
     }
 
+    * {
+      font-family: "Zen Kurenaido", sans-serif;
+    }
+
+    .collapsible .toggle {
+      background-color: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+      outline: none;
+      padding: 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .collapsible .content {
+      display: none;
+      font-size: 1.3rem;
+      overflow: hidden;
+      padding: 0 1.2rem;
+    }
+
     .content {
       margin: 0 0.5rem;
       max-width: 92%;
@@ -95,6 +118,7 @@
 
     pre code {
       display: block;
+      font-family: monospace;
       max-width: 100%;
       min-width: 100px;
       padding: 0;
@@ -126,6 +150,10 @@
 
     .content .content__links a {
       color: var(--color-highlight);
+    }
+
+    .content .content__articles {
+      font-size: 1.5rem;
     }
 
     @-webkit-keyframes blink-caret {
@@ -164,8 +192,16 @@
     <p>Based in Munich, Germany.</p>
 
     <section class="content__cv">
-      <p>_ download my <a href="/cv.pdf" download="brian_mayo">CV</a></p>
-      <pre><code>curl -o brian_mayo.pdf https://protiumx.github.io/cv.pdf</code></pre>
+      <p>&gt; download a minimal version of my <a href="/cv.pdf" download="brian-mayo-cv">CV</a></p>
+      <pre><code>curl -o brian-mayo-cv.pdf https://protiumx.github.io/cv.pdf</code></pre>
+    </section>
+
+    <section class="content__articles">
+      <p>&gt; last published articles:</p>
+
+      <ul class="content">
+cascascsa
+      </ul>
     </section>
 
     <section class="content__links">
@@ -178,6 +214,8 @@
       </a>
     </section>
   </main>
+  <script src="./meed.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>

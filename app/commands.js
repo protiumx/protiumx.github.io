@@ -166,7 +166,7 @@ const SystemCommands = [
     async run(term, args) {
       const systemFile = files.find(({ name }) => name === args[0]);
       if (!systemFile) {
-        term.writeln(TermColors.Red + '[error]: ' + TermColors.Reset + `"${file}": No such a file or directory`);
+        term.writeln(TermColors.Red + '[error]: ' + TermColors.Reset + `"${args[0]}": No such a file or directory`);
       } else {
         files = files.filter(({ name }) => name != systemFile.name);
       }

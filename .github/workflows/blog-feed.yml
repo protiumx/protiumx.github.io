@@ -1,4 +1,4 @@
-name: Update Medium articles
+name: Update blog feed
 on:
   schedule:
     - cron: '0 0 * * 0' # Runs once a week
@@ -13,6 +13,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          feed_list: "https://medium.com/feed/@protiumx"
+          feed_list: "https://protiumx.github.io/blog/index.xml"
           readme_path: "./index.html"
           template: '<li><a href="$url" target="_blank">$title</a></li>$newline'

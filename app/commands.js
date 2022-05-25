@@ -229,7 +229,7 @@ export async function runCommand(userInput, term) {
 
 export async function fecthLastPosts() {
   // Use RSS feed
-  const res = await fetch('https://protiumx.github.io/blog/index.xml');
+  const res = await fetch('/blog/index.xml');
   const text = await res.text();
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text,"text/xml");

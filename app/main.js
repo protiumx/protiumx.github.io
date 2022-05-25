@@ -154,5 +154,7 @@ async function runTerminal() {
   term.onKey(createOnKeyHandler(term));
 }
 
-fecthLastPosts().catch(console.error);
-runTerminal().catch(console.error);
+window.onload = function() {
+  fecthLastPosts().catch(console.error);
+  runTerminal().catch(console.error);
+};

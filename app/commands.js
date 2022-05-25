@@ -1,5 +1,7 @@
 import { TermColors } from './constants.js';
-import { colorize, getSpacing, sleep } from './utils.js';
+import { colorize, downloadFile, getSpacing, sleep } from './utils.js';
+
+const LAST_UPDATE = '2022-05-25';
 
 let files = [
   {
@@ -39,6 +41,13 @@ const webApps = [
   {
     name: 'source',
     url: 'https://github.com/protiumx/protiumx.github.io'
+  }
+];
+
+const downloadFiles = [
+  {
+    name: "resume.pdf",
+    url: "/cv.pdf",
   }
 ];
 
@@ -84,6 +93,24 @@ const SystemCommands = [
     },
   },
 
+  {
+    id: "download",
+    args: 1,
+    usage: `usage: download [${downloadFiles.map(f => f.name).join(' | ')}]`,
+    description: 'download a file',
+    async run(term, args) {
+      const file = downloadFiles.find(({ name }) => name === args[0]);
+      if (!file) {
+        term.writeln(colorize(TermColors.Red, '[error]: ') + `"${args[0]}" not found` );
+        this.usage(term);
+        return;
+      }
+      term.writeln(colorize(TermColors.Green, `downloading ${file.name} ...`));
+      await sleep(1000);
+      downloadFile(file.url, 'brian_mayo_resume.pdf');
+    },
+  },
+  
   {
     id: "exit",
     args: 0,
@@ -188,7 +215,7 @@ const SystemCommands = [
       term.writeln(colorize(TermColors.Green, 'fav languages: ') + '[golang, rust, typescript]');
       term.writeln(colorize(TermColors.Green, 'hobbies: ') + '[photography, music, electronics]');
       term.writeln(colorize(TermColors.Green, 'blog: ') + 'https://protiumx.dev/blog');
-      term.writeln(colorize(TermColors.Green, 'last update: ') + '2022-05-24');
+      term.writeln(colorize(TermColors.Green, 'last update: ') + LAST_UPDATE);
     },
   },
 ];

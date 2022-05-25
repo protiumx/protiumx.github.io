@@ -1,5 +1,13 @@
 import { TermColors, SHELL_PROMPT } from './constants.js';
 
+const downloadElement = document.getElementById('download');
+
+export function downloadFile(file, name) {
+  downloadElement.setAttribute('href', file);
+  downloadElement.setAttribute('download', name);
+  downloadElement.click();
+}
+
 export function colorize(color, text) {
   return `${color}${text}${TermColors.Reset}`;
 }

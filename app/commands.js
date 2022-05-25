@@ -3,12 +3,12 @@ import { colorize, getSpacing, sleep } from './utils.js';
 
 let files = [
   {
-    name: 'blog',
+    name: 'blog.md',
     content: '',
   },
 
   {
-    name: 'projects',
+    name: 'projects.md',
     content: colorize(TermColors.Green, 'blogpub: github action to publish blog posts from github to Medium or Dev.to') + '\r\nhttps://github.com/protiumx/blogpub\r\n\n' +
     colorize(TermColors.Green, 'algo: coding problems with modern languages, TDD and CI') + '\r\nhttps://github.com/protiumx/algo\r\n\n' +
     colorize(TermColors.Green, 'rq: HTTP Rest parser written in rust') + '\r\nhttps://github.com/protiumx/rq'

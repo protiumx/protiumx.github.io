@@ -118,7 +118,7 @@ const SystemCommands = [
     async run(term, args) {
       term.writeln('terminating session...');
       await sleep(1000);
-      window.close();
+      window.location.href = 'https://www.youtube.com/watch?v=iik25wqIuFo';
     },
   },
 

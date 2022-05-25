@@ -46,9 +46,7 @@ const SystemCommands = [
   {
     id: "cat",
     description: 'print files',
-    usage(term) {
-      term.writeln('usage: cat [file ...]');
-    },
+    usage: 'usage: cat [file ...]',
     args: -1,
     async run(term, args) {
       for (const file of args) {
@@ -66,6 +64,7 @@ const SystemCommands = [
     id: "cowsay",
     args: -1,
     description: 'cowsay nice things. max 20 chars',
+    usage: 'usage: cowsay [something ...]',
     async run(term, args) {
       const max = 20;
       const say = args.join(' ').slice(0, max);
@@ -125,9 +124,7 @@ const SystemCommands = [
   {
     id: "open",
     description: 'open applications',
-    usage(term) {
-      term.writeln(`usage: open [${webApps.map(app => app.name).join(' | ')}]`);
-    },
+    usage: `usage: open [${webApps.map(app => app.name).join(' | ')}]`,
     args: 1,
     async run(term, args) {
       const app = webApps.find(a => a.name === args[0]);
@@ -163,9 +160,7 @@ const SystemCommands = [
   {
     id: "rm",
     description: 'remove a file',
-    usage(term) {
-      term.writeln('usage: rm file');
-    },
+    usage: 'usage: rm file',
     args: 1,
     async run(term, args) {
       const systemFile = files.find(({ name }) => name === args[0]);
@@ -217,7 +212,7 @@ export async function runCommand(userInput, term) {
 
     if (command.args > args.length) {
       term.writeln(colorize(TermColors.Red, 'wrong arguments'));
-      command.usage(term);
+      term.writeln(command.usage);
     } else {
       await command.run(term, args);
     }
@@ -226,7 +221,7 @@ export async function runCommand(userInput, term) {
       await command.run(term, args);
     } else {
       term.writeln(colorize(TermColors.Red, 'wrong arguments'));
-      command.usage(term);
+      term.writeln(command.usage);
     }
   }
   return true;

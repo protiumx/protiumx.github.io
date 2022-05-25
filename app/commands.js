@@ -18,7 +18,7 @@ let files = [
 const webApps = [
   {
     name: 'blog',
-    url: 'https://protiumx.github.io/blog/'
+    url: 'https://protiumx.dev/blog/'
   },
   {
     name: 'github',
@@ -34,7 +34,7 @@ const webApps = [
   },
   {
     name: 'resume',
-    url: 'https://protiumx.github.io/cv.pdf'
+    url: 'https://protiumx.dev/cv.pdf'
   },
   {
     name: 'source',

@@ -145,14 +145,18 @@ const SystemCommands = [
     args: 0,
     async run(term, args) {
       term.writeln('getting a cato...');
-      const res = await fetch('https://cataas.com/cat?json=true');
-      if (!res.ok) {
-        term.writeln(colorize(TermColors.Red, `[error] no catos today :( -- ${res.statusText}`));
-      }  else {
-        const { url } = await res.json();
-        term.writeln(colorize(TermColors.Green, 'opening cato...'));
-        await sleep(1000);
-        window.open('https://cataas.com' + url);
+      try {
+        const res = await fetch('https://cataas.com/cat?json=true');
+        if (!res.ok) {
+          term.writeln(colorize(TermColors.Red, `[error] no catos today :( -- ${res.statusText}`));
+        }  else {
+          const { url } = await res.json();
+          term.writeln(colorize(TermColors.Green, 'opening cato...'));
+          await sleep(1000);
+          window.open('https://cataas.com' + url);
+        }
+      } catch(e) {
+        term.writeln(colorize(TermColors.Red, `[error] no catos today :( -- ${e.message}`));
       }
     },
   },

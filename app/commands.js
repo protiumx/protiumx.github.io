@@ -183,7 +183,7 @@ const SystemCommands = [
       term.writeln(colorize(TermColors.Green, 'location: ') + 'Munich, Germany');
       term.writeln(colorize(TermColors.Green, 'fav languages: ') + '[golang, rust, typescript]');
       term.writeln(colorize(TermColors.Green, 'hobbies: ') + '[photography, music, electronics]');
-      term.writeln(colorize(TermColors.Green, 'blog: ') + 'https://protiumx.github.com/blog');
+      term.writeln(colorize(TermColors.Green, 'blog: ') + 'https://protiumx.dev/blog');
       term.writeln(colorize(TermColors.Green, 'last update: ') + '2022-05-24');
     },
   },

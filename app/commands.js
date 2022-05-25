@@ -17,6 +17,10 @@ let files = [
 
 const webApps = [
   {
+    name: 'blog',
+    url: 'https://protiumx.github.io/blog/'
+  },
+  {
     name: 'github',
     url: 'https://github.com/protiumx/'
   },

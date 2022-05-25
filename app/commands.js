@@ -147,7 +147,7 @@ const SystemCommands = [
       term.writeln('getting a cato...');
       const res = await fetch('https://cataas.com/cat?json=true');
       if (!res.ok) {
-        term.writeln(colorize(TermColors.Red, `[error] no catos toda :( -- ${res.statusText}`));
+        term.writeln(colorize(TermColors.Red, `[error] no catos today :( -- ${res.statusText}`));
       }  else {
         const { url } = await res.json();
         term.writeln(colorize(TermColors.Green, 'opening cato...'));

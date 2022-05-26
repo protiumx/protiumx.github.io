@@ -14,7 +14,7 @@ const cat = {
         term.writeln(colorize(TermColors.Red, '[error]: ') + `"${fileName}": No such a file or directory`);
         continue;
       } 
-      if (file.name.includes('.pdf')) {
+      if (!file.name.includes('.md')) {
         term.writeln(colorize(TermColors.Red, '[error]: ') + `"${file.name}": file encoding not supported`);
         continue;
       }

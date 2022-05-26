@@ -9,6 +9,7 @@ import ls from './ls.js';
 import open from './open.js';
 import randc from './randc.js';
 import rm from './rm.js';
+import uname from './uname.js';
 import whoami from './whoami.js';
 
 const SystemCommands = [
@@ -30,15 +31,18 @@ const SystemCommands = [
         return;
       }
       term.writeln('NAME');
-      term.writeln(`\t ${command.id} - ${command.description}\n`);
-      term.writeln('SYNOPSIS');
-      term.writeln(`\t ${command.usage}`);
+      term.writeln(`\t ${command.id} - ${command.description}`);
+      if (command.usage) {
+        term.writeln('\nSYNOPSIS');
+        term.writeln(`\t ${command.usage}`);
+      }
     }
   },
 
   open,
   randc,
   rm,
+  uname,
   whoami,
 
   {

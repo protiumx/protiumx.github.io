@@ -21,7 +21,7 @@ const SystemCommands = [
   {
     id: 'man',
     usage: 'man command',
-    description: 'show man files for a command',
+    description: 'show manual pages for a command',
     args: 1,
     async exec(term, args) {
       const command = SystemCommands.filter(c => c.id !== 'man').find(c => c.id === args[0]);

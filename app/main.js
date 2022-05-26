@@ -59,6 +59,7 @@ function createOnKeyHandler(term) {
     if (ev.ctrlKey && ev.key === 'c') {
       prompt(term);
       userInput = '';
+      currentHistoryPosition = commandHistory.length;
       return;
     }
 

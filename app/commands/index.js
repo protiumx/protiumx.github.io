@@ -25,7 +25,7 @@ const SystemCommands = [
     description: 'show manual pages for a command',
     args: 1,
     async exec(term, args) {
-      const command = SystemCommands.filter(c => c.id !== 'man').find(c => c.id === args[0]);
+      const command = SystemCommands.find(c => c.id === args[0]);
       if (!command) {
         term.writeln(colorize(TermColors.Red, `[error]: command "${args[0]}" not found`))
         return;

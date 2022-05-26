@@ -26,6 +26,10 @@ async function initTerminalSession(term) {
 }
 
 function pushToCommandHistory(store, command) {
+  // Avoid duplicates with last command
+  if (store.length > 0 && store[store.length - 1] === command) {
+    return;
+  }
   store.push(command);
   localStorage.setItem('history', JSON.stringify(store));
 }

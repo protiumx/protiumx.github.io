@@ -8,7 +8,7 @@ const randc = {
   async exec(term, _args) {
     term.writeln('getting a cato...');
     try {
-      const res = await fetch('https://cataas.com/cat?json=true');
+      const res = await fetch('https://cataas.com/cat?json=true', { timeout: 5000 });
       if (!res.ok) {
         term.writeln(colorize(TermColors.Red, `[error] no catos today :( -- ${res.statusText}`));
       } else {

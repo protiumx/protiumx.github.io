@@ -79,11 +79,9 @@ function createOnKeyHandler(term) {
       return;
     }
 
-
     // Delete char
     if (ev.keyCode == 8) {
       if (userInput.length > 0) {
-        console.log(term._core.buffer)
         if (term._core.buffer.x === 0 && term._core.buffer.y > 1) {
           // Move up
           term.write('\x1b[A');

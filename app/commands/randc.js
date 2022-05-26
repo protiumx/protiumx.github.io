@@ -1,6 +1,9 @@
 import {TermColors} from "../constants.js";
 import {colorize, sleep} from "../utils.js";
 
+const api = 'https://api.thecatapi.com/v1/images/search';
+
+
 const randc = {
   id: "randc",
   description: 'open a random cat photo',
@@ -10,15 +13,20 @@ const randc = {
     try {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), 5000);
-      const res = await fetch('https://cataas.com/cat?json=true', { signal: controller.signal });
+      const res = await fetch(api, {
+        signal: controller.signal,
+        headers: {
+          apiKey: '380794ef-b3c5-4a5a-b4b1-375b576c5b01',
+        },
+      });
       clearTimeout(id);
       if (!res.ok) {
         term.writeln(colorize(TermColors.Red, `[error] no catos today :( -- ${res.statusText}`));
       } else {
-        const {url} = await res.json();
+        const [cat] = await res.json();
         term.writeln(colorize(TermColors.Green, 'opening cato...'));
         await sleep(1000);
-        window.open('https://cataas.com' + url);
+        window.open(cat.url);
       }
     } catch (e) {
       term.writeln(colorize(TermColors.Red, `[error] no catos today :( -- ${e.message}`));

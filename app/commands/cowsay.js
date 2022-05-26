@@ -4,7 +4,7 @@ const cowsay = {
   id: "cowsay",
   args: -1,
   description: 'cowsay nice things. max 20 chars',
-  usage: 'usage: cowsay [something ...]',
+  usage: 'cowsay [something ...]',
   async exec(term, args) {
     const max = 20;
     const say = args.join(' ').slice(0, max);

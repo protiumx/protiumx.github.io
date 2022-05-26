@@ -15,7 +15,7 @@ function parseGlobPattern(pattern) {
 const rm = {
   id: "rm",
   description: 'remove files',
-  usage: 'usage: rm [file ...]',
+  usage: 'rm [file ...]',
   args: -1,
   async exec(term, args) {
     for (const fileName of args) {

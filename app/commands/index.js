@@ -17,6 +17,25 @@ const SystemCommands = [
   download,
   exit,
   ls,
+
+  {
+    id: 'man',
+    usage: 'man command',
+    description: 'show man files for a command',
+    args: 1,
+    async exec(term, args) {
+      const command = SystemCommands.filter(c => c.id !== 'man').find(c => c.id === args[0]);
+      if (!command) {
+        term.writeln(colorize(TermColors.Red, `[error]: command "${args[0]}" not found`))
+        return;
+      }
+      term.writeln('NAME');
+      term.writeln(`\t ${command.id} - ${command.description}\n`);
+      term.writeln('SYNOPSIS');
+      term.writeln(`\t ${command.usage}`);
+    }
+  },
+
   open,
   randc,
   rm,
@@ -59,7 +78,7 @@ export async function exec(userInput, term) {
 
     if (command.args !== args.length) {
       term.writeln(colorize(TermColors.Red, 'wrong arguments'));
-      term.writeln(command.usage);
+      term.writeln(`usage: ${command.usage}`);
     } else {
       await command.exec(term, args);
     }
@@ -68,7 +87,7 @@ export async function exec(userInput, term) {
       await command.exec(term, args);
     } else {
       term.writeln(colorize(TermColors.Red, 'wrong arguments'));
-      term.writeln(command.usage);
+      term.writeln(`usage: ${command.usage}`);
     }
   }
   return true;

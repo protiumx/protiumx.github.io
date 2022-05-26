@@ -5,7 +5,7 @@ import {colorize, downloadFile, sleep} from "../utils.js";
 const download = {
   id: "download",
   args: 1,
-  usage: 'usage: download filename',
+  usage: 'download filename',
   description: 'download a file',
   async exec(term, args) {
     const file = fileSystem.get(args[0]);

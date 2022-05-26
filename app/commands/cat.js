@@ -5,7 +5,7 @@ import {colorize} from '../utils.js';
 const cat = {
   id: "cat",
   description: 'print files',
-  usage: 'usage: cat [file ...]',
+  usage: 'cat [file ...]',
   args: -1,
   async exec(term, args) {
     for (const fileName of args) {

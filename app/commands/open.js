@@ -35,7 +35,7 @@ const WebApps = [
 const open = {
   id: "open",
   description: 'open applications',
-  usage: `usage: open [${WebApps.map(app => app.name).join(' | ')}]`,
+  usage: `open [${WebApps.map(app => app.name).join(' | ')}]`,
   args: 1,
   async exec(term, args) {
     const app = WebApps.find(a => a.name === args[0]);

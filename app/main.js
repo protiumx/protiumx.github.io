@@ -72,6 +72,13 @@ function createOnKeyHandler(term) {
       return;
     }
 
+    // Print last command
+    if (ev.ctrlKey && ev.key === 'p') {
+      userInput = commandHistory[commandHistory.length -1];
+      term.write(userInput);
+      return;
+    }
+
     // delete
     if (ev.keyCode == 8) {
       if (userInput.length > 0) {
@@ -88,6 +95,11 @@ function createOnKeyHandler(term) {
         userInput = '';
         prompt(term);
         return;
+      }
+
+      // Repeat last command
+      if (userInput == '!!') {
+        userInput = commandHistory[commandHistory.length -1];
       }
 
       term.writeln('');

@@ -2,8 +2,8 @@ import fileSystem from '../file-system.js';
 import { TermColors } from '../constants.js';
 import { colorize } from '../utils.js';
 
-function parseGlobPattern(blob) {
-  switch(blob) {
+function parseGlobPattern(pattern) {
+  switch(pattern) {
     case '*':
     case '/*':
       return fileSystem.getAll();

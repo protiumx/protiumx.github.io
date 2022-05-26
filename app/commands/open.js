@@ -15,6 +15,10 @@ const WebApps = [
     url: 'https://www.instagram.com/_protium/'
   },
   {
+    name: 'issues',
+    url: 'https://github.com/protiumx/protiumx.github.io/issues/'
+  },
+  {
     name: 'linkedin',
     url: 'https://www.linkedin.com/in/bdmayo/'
   },

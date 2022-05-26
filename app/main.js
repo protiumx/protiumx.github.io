@@ -79,11 +79,22 @@ function createOnKeyHandler(term) {
       return;
     }
 
-    // delete
+
+    // Delete char
     if (ev.keyCode == 8) {
       if (userInput.length > 0) {
-        term.write('\b \b');
-        userInput = userInput.substring(0, userInput.length-1)
+        console.log(term._core.buffer)
+        if (term._core.buffer.x === 0 && term._core.buffer.y > 1) {
+          // Move up
+          term.write('\x1b[A');
+          // Move to the end of line
+          term.write('\x1b[' + term._core.buffer._cols + 'G');
+          term.write(' ');
+        } else {
+          term.write('\b \b');
+        }
+
+        userInput = userInput.substring(0, userInput.length-1);
       }
       return;
     }

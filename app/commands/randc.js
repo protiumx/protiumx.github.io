@@ -3,7 +3,7 @@ import {colorize, sleep} from "../utils.js";
 
 const randc = {
   id: "randc",
-  description: 'get a random cat photo',
+  description: 'open a random cat photo',
   args: 0,
   async exec(term, _args) {
     term.writeln('getting a cato...');

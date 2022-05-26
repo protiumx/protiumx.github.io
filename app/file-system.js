@@ -8,7 +8,7 @@ const Files = [
   },
   {
     name: "resume.pdf",
-    path: "/cv.pdf",
+    path: "/resume.pdf",
     content: '',
     deleted: false,
     downloadName: 'brian_mayo_resume.pdf',

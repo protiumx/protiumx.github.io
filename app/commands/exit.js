@@ -3,7 +3,7 @@ import {sleep} from "../utils.js";
 const exit = {
   id: "exit",
   args: 0,
-  description: 'exit current session',
+  description: 'terminate current session',
   async exec(term, _args) {
     term.writeln('terminating session...');
     await sleep(1000);

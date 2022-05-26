@@ -194,6 +194,7 @@ async function runTerminal() {
   await initTerminalSession(term);
 
   term.onKey(createOnKeyHandler(term));
+  window.term = term;
 }
 
 window.onload = function() {

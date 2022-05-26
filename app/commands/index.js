@@ -1,6 +1,7 @@
 import {TermColors} from '../constants.js';
 import { colorize, getSpacing} from '../utils.js';
 
+import bindkey from './bindkey.js';
 import cat from './cat.js';
 import cowsay from './cowsay.js';
 import download from './download.js';
@@ -13,6 +14,7 @@ import uname from './uname.js';
 import whoami from './whoami.js';
 
 const SystemCommands = [
+  bindkey,
   cat,
   cowsay,
   download,
@@ -62,7 +64,7 @@ const SystemCommands = [
 ];
 
 export async function exec(userInput, term) {
-  const [input, ...args] = userInput.split(' ');
+  const [input, ...args] = userInput.split(/\s+/);
   const command = SystemCommands.find(c => c.id === input);
   if (!command) {
     return false;

@@ -1,6 +1,7 @@
 import { TermColors, SHELL_PROMPT } from './constants.js';
-import { colorize, getSpacing, sleep } from './utils.js';
-import { fecthLastPosts, runCommand } from './commands.js';
+import fileSystem from './file-system.js';
+import { sleep } from './utils.js';
+import { exec } from './commands/index.js';
 
 function commandNotFound(term) {
   term.writeln(TermColors.Red + 'Command not found. Type "help" to list available commands');
@@ -24,12 +25,29 @@ async function initTerminalSession(term) {
   term.write(SHELL_PROMPT);
 }
 
+function pushToCommandHistory(store, command) {
+  store.push(command);
+  localStorage.setItem('history', JSON.stringify(store));
+}
+
+function loadCommandHistory() {
+  const data = localStorage.getItem('history');
+  if (!data) {
+    return [];
+  }
+  try {
+    return JSON.parse(data);
+  } catch {
+    return [];
+  }
+}
+
 function createOnKeyHandler(term) {
   // Track the user input
   let userInput = '';
   // Track command history
-  let commandHistory = [];
-  let currentHistoryPosition = 0;
+  let commandHistory = loadCommandHistory();
+  let currentHistoryPosition = commandHistory.length;
 
   return async ({ key, domEvent: ev }) => {
     const printable = (!ev.altKey && !ev.altGraphKey && !ev.ctrlKey && !ev.metaKey);
@@ -68,16 +86,14 @@ function createOnKeyHandler(term) {
       }
 
       term.writeln('');
-      const result = await runCommand(userInput, term);
+      const result = await exec(userInput, term);
       if (!result) {
         commandNotFound(term);        
-      } else {
-        // history size check
-        if (commandHistory.length > 100) {
-          commandHistory = commandHistory.slice(100 - commandHistory.length);
-        }
       }
-      commandHistory.push(userInput);
+      if (commandHistory.length > 100) {
+        commandHistory = commandHistory.slice(100 - commandHistory.length);
+      }
+      pushToCommandHistory(commandHistory, userInput);
       currentHistoryPosition = commandHistory.length;
       prompt(term);
       userInput = '';
@@ -155,6 +171,6 @@ async function runTerminal() {
 }
 
 window.onload = function() {
-  fecthLastPosts().catch(console.error);
+  fileSystem.load().catch(console.error);
   runTerminal().catch(console.error);
 };

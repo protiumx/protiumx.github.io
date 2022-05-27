@@ -1,7 +1,7 @@
 import {TermColors} from "../constants.js";
 import {colorize, sleep} from "../utils.js";
 
-const api = 'https://api.thecatapi.com/v1/images/search';
+const api = 'https://api.thecatapi.com/v1/images/search?category_ids=1';
 
 
 const randc = {

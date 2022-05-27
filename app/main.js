@@ -155,7 +155,7 @@ async function runTerminal() {
     cursorBlink: "block",
     scrollback: 1000,
     tabStopWidth: 4,
-    fontFamily: 'Ubuntu Mono, courier-new, courier, monospace',
+    fontFamily: 'CascadiaMono, courier-new, courier, monospace',
     fontSize: 18,
     theme: {
       background: '#060606',

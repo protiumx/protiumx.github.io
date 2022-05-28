@@ -10,7 +10,7 @@ const download = {
   async exec(term, args) {
     const file = fileSystem.get(args[0]);
     if (!file) {
-      term.writeln(colorize(TermColors.Red, '[error]: ') + `"${args[0]}" not found`);
+      term.writeln(colorize(TermColors.Red, '[error]: ') + `"${args[0]}" no such a file`);
       return;
     }
     let url = file.path;

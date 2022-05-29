@@ -24,7 +24,7 @@ const WebApps = [
   },
   {
     name: 'resume',
-    url: 'https://protiumx.dev/resume.pdf'
+    url: 'https://protiumx.dev/files/resume.pdf'
   },
   {
     name: 'source',

@@ -46,7 +46,7 @@ const open = {
       }
     }
    
-    if (!url === '') {
+    if (url === '') {
       term.writeln(colorize(TermColors.Red, '[error]: ') + `"${args[0]}" no such file or application`);
       term.writeln(this.usage);
       return;

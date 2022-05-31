@@ -45,11 +45,15 @@ async function loadFile(file) {
 
 const fileSystem = {
   get(fileName) {
-    return Files.filter(f => !f.deleted).find(f => f.name === fileName);
+    return this.files.find(f => f.name === fileName);
   },
 
   getAll() {
-    return Files.filter(f => !f.deleted).map(f => f.name);
+    return this.files.map(f => f.name);
+  },
+
+  get files() {
+    return Files.filter(f => !f.deleted);
   },
 
   async load() {

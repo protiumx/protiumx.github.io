@@ -1,3 +1,3 @@
 # protiumx.github.io
 
-my simple info page
+my simple info terminal website

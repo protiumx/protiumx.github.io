@@ -20,26 +20,10 @@ const Files = [
   }
 ];
 
-function parseRSSFeed(content) {
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(content, "text/xml");
-  const posts = xmlDoc.getElementsByTagName('item');
-  const lastPosts = [];
-  for (let i = 0; i < 5; i++) {
-    const title = posts[i].getElementsByTagName('title')[0].childNodes[0].nodeValue;
-    const link = posts[i].getElementsByTagName('link')[0].childNodes[0].nodeValue;
-    lastPosts.push(`# ${title}\r\n${link}\r\n`);
-  }
-
-  return lastPosts.join('\n');
-}
 
 async function loadFile(file) { 
   const res = await fetch(file.path);
   file.content = await res.text();
-  if (file.name === 'blog.md') {
-    file.content = parseRSSFeed(file.content);
-  }
 }
 
 const fileSystem = {

@@ -2,9 +2,8 @@ const Files = [
   {
     name: 'blog.md',
     content: '',
-    path: '/blog/index.xml',
+    path: '/blog.md',
     deleted: false,
-    virtual: true,
   },
   {
     name: "resume.pdf",

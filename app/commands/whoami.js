@@ -11,7 +11,7 @@ const whoami = {
     term.writeln(colorize(TermColors.Green, 'name: ') + 'brian');
     term.writeln(colorize(TermColors.Green, 'host: ') + window.location.host);
     term.writeln(colorize(TermColors.Green, 'current position: ') + 'software engineer');
-    term.writeln(colorize(TermColors.Green, 'company: ') + 'Hearbeat Medical Solutions < https://heartbeat-med.de >');
+    term.writeln(colorize(TermColors.Green, 'company: ') + 'Heartbeat Medical Solutions < https://heartbeat-med.de >');
     term.writeln(colorize(TermColors.Green, 'location: ') + 'Munich, Germany');
     term.writeln(colorize(TermColors.Green, 'fav languages: ') + '[golang, rust, typescript]');
     term.writeln(colorize(TermColors.Green, 'hobbies: ') + '[photography, music, electronics]');

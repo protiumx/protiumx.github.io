@@ -15,6 +15,7 @@ jobs:
       - name: Parse RSS
         run: deno run --allow-net .github/workflows/rss.ts > blog.md
       - name: Commit file
+        if: success()
         run: |
           git config --local user.email ioprotium@gmail.com
           git config --local user.name bot
@@ -22,6 +23,3 @@ jobs:
           git add blog.md
           git commit -m "docs: update last blog posts"
           git push
-
-
-

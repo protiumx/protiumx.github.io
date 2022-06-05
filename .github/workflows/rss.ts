@@ -7,6 +7,5 @@ const output = [];
 for (const {title, link} of rss.channel.item) {
   output.push(`# ${title}\r\n${link}\r\n`);
 }
-
-console.log(output.join('\n'));
+await Deno.stdout.write(new TextEncoder().encode(output.join('\n')));
 

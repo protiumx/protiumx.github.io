@@ -15,4 +15,3 @@ https://protiumx.dev/blog/posts/kitty--zsh--powerlevel10k-aesthetics/
 
 # Publish your blog articles everywhere with this github action
 https://protiumx.dev/blog/posts/publish-your-blog-articles-everywhere-with-this-github-action/
-

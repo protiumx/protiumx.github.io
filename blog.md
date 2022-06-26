@@ -1,3 +1,6 @@
+# Github template for Golang services
+https://protiumx.dev/blog/posts/github-template-for-golang-services/
+
 # Creating a Text-based UI with rust
 https://protiumx.dev/blog/posts/creating-a-text-based-ui-with-rust/
 

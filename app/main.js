@@ -1,6 +1,6 @@
 import { HistorySize, TermColors, SHELL_PROMPT } from "./constants.js";
 import fileSystem from "./file-system.js";
-import { sleep } from "./utils.js";
+import { isPrintableKeyCode, sleep } from "./utils.js";
 import { exec } from "./commands/index.js";
 
 function commandNotFound(term) {
@@ -43,7 +43,8 @@ function loadCommandHistory() {
   }
   try {
     return JSON.parse(data);
-  } catch {
+  } catch (e) {
+    console.error("Failed to parse command history", e);
     return [];
   }
 }
@@ -56,11 +57,6 @@ function createOnKeyHandler(term) {
   let currentHistoryPosition = commandHistory.length;
 
   return async ({ key, domEvent: ev }) => {
-    // Ignore left, right and escape
-    if (ev.keyCode === 9 || ev.keyCode === 37 || ev.keyCode === 39) {
-      return;
-    }
-
     switch (ev.key) {
       case "ArrowUp":
       case "ArrowDown": {
@@ -151,10 +147,9 @@ function createOnKeyHandler(term) {
       }
     }
 
-    const printable =
-      !ev.altKey && !ev.altGraphKey && !ev.ctrlKey && !ev.metaKey;
+    const hasModifier = ev.altKey || ev.altGraphKey || ev.ctrlKey || ev.metaKey;
 
-    if (printable) {
+    if (!hasModifier && isPrintableKeyCode(ev.keyCode)) {
       term.write(key);
       userInput += key;
     }
@@ -183,16 +178,18 @@ async function runTerminal() {
       brightRed: "#cf442b",
     },
   });
+  // window.term = term;
 
   const fitAddon = new window.FitAddon.FitAddon();
   term.loadAddon(fitAddon);
   term.loadAddon(new window.WebLinksAddon.WebLinksAddon());
   term.open(container);
-  fitAddon.fit();
 
+  fitAddon.fit();
   term.focus();
+
   await initTerminalSession(term);
-  window.term = term;
+
   term.onKey(createOnKeyHandler(term));
 }
 

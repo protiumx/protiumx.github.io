@@ -1,10 +1,10 @@
-import { TermColors, SHELL_PROMPT } from './constants.js';
+import { TermColors } from "./constants.js";
 
-const downloadElement = document.getElementById('download');
+const downloadElement = document.getElementById("download");
 
 export function downloadFile(file, name) {
-  downloadElement.setAttribute('href', file);
-  downloadElement.setAttribute('download', name);
+  downloadElement.setAttribute("href", file);
+  downloadElement.setAttribute("download", name);
   downloadElement.click();
 }
 
@@ -16,7 +16,7 @@ export function sleep(delay) {
   return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-export function getSpacing(spacing, spacer = ' ') {
+export function getSpacing(spacing, spacer = " ") {
   const ret = [];
   let i = spacing;
 
@@ -24,6 +24,16 @@ export function getSpacing(spacing, spacer = ' ') {
     ret.push(spacer);
     i -= 1;
   }
-  return ret.join('');
+  return ret.join("");
 }
 
+/**
+ * @param {KeyboardEvent.keyCode} keyCode
+ */
+export function isPrintableKeyCode(keyCode) {
+  return (
+    (keyCode >= 48 && keyCode <= 90) ||
+    (keyCode >= 96 && keyCode <= 111) ||
+    (keyCode >= 186 && keyCode <= 222)
+  );
+}

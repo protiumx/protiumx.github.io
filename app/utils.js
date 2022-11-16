@@ -32,6 +32,7 @@ export function getSpacing(spacing, spacer = " ") {
  */
 export function isPrintableKeyCode(keyCode) {
   return (
+    keyCode === 32 ||
     (keyCode >= 48 && keyCode <= 90) ||
     (keyCode >= 96 && keyCode <= 111) ||
     (keyCode >= 186 && keyCode <= 222)

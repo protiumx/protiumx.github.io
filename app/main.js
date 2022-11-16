@@ -3,10 +3,8 @@ import fileSystem from "./file-system.js";
 import { isPrintableKeyCode, sleep } from "./utils.js";
 import { exec } from "./commands/index.js";
 
-function commandNotFound(term) {
-  term.writeln(
-    TermColors.Red + 'Command not found. Type "help" to list available commands'
-  );
+function printError(term, error) {
+  term.writeln(TermColors.Red + error);
 }
 
 function prompt(term) {
@@ -55,6 +53,11 @@ function createOnKeyHandler(term) {
   // Track command history
   let commandHistory = loadCommandHistory();
   let currentHistoryPosition = commandHistory.length;
+  let currentProcessId = null;
+
+  function onProcessExit() {
+    currentProcessId = null;
+  }
 
   return async ({ key, domEvent: ev }) => {
     switch (ev.key) {
@@ -129,9 +132,14 @@ function createOnKeyHandler(term) {
         }
 
         term.writeln("");
-        const result = await exec(userInput, term);
-        if (!result) {
-          commandNotFound(term);
+
+        try {
+          const pId = await exec(term, userInput, onProcessExit);
+          if (pId) {
+            currentProcessId = pId;
+          }
+        } catch (e) {
+          printError(term, e.message);
         }
 
         if (commandHistory.length > HistorySize) {

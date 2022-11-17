@@ -5,6 +5,6 @@ dev: cp-wasmjs
 
 cp-wasmjs:
 ifeq (,$(wildcard ./app/wasm_exec.js))
-	cp "$(shell go env GOROOT)/misc/wasm/wasm_exec.js" ./app/
+	cp "$(shell go env GOROOT)/misc/wasm/wasm_exec.js" ./wasm/
 endif
 

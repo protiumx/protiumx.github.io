@@ -1,6 +1,6 @@
 import { HistorySize, TermColors, SHELL_PROMPT } from "./constants.js";
 import fileSystem from "./file-system.js";
-import { isPrintableKeyCode, sleep } from "./utils.js";
+import { handleBackspace, isPrintableKeyCode, sleep } from "./utils.js";
 import { exec } from "./commands/index.js";
 
 function printError(term, error) {
@@ -56,10 +56,15 @@ function createOnKeyHandler(term) {
   let currentProcessId = null;
 
   function onProcessExit() {
+    prompt(term);
     currentProcessId = null;
   }
 
   return async ({ key, domEvent: ev }) => {
+    if (currentProcessId !== null) {
+      return;
+    }
+
     switch (ev.key) {
       case "ArrowUp":
       case "ArrowDown": {
@@ -108,18 +113,7 @@ function createOnKeyHandler(term) {
       }
 
       case "Backspace": {
-        if (userInput.length === 0) return;
-
-        if (term._core.buffer.x === 0 && term._core.buffer.y > 1) {
-          // Move up
-          term.write("\x1b[A");
-          // Move to the end
-          term.write("\x1b[" + term._core.buffer._cols + "G");
-          term.write(" ");
-        } else {
-          term.write("\b \b");
-        }
-        userInput = userInput.substring(0, userInput.length - 1);
+        userInput = handleBackspace(term, userInput);
         return;
       }
 
@@ -149,8 +143,11 @@ function createOnKeyHandler(term) {
         }
         pushCommandToHistory(commandHistory, userInput);
         currentHistoryPosition = commandHistory.length;
-        prompt(term);
+
         userInput = "";
+        if (currentProcessId === null) {
+          prompt(term);
+        }
         return;
       }
     }

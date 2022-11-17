@@ -71,7 +71,7 @@ const SystemCommands = [
 ];
 
 // Handle arguments check here to avoid duplication
-export async function exec(term, userInput) {
+export async function exec(term, userInput, onProcessExit) {
   const [input, ...args] = userInput.split(/\s+/);
   const command = SystemCommands.find((c) => c.id === input);
   if (!command) {
@@ -94,6 +94,10 @@ export async function exec(term, userInput) {
     );
   }
 
-  await command.exec(term, args);
+  await command.exec(term, args, onProcessExit);
+  if (command.process) {
+    return command.id;
+  }
+
   return null;
 }

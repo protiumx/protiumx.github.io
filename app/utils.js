@@ -38,3 +38,22 @@ export function isPrintableKeyCode(keyCode) {
     (keyCode >= 186 && keyCode <= 222)
   );
 }
+
+/**
+ * @param {string} input
+ * @returns {string}
+ */
+export function handleBackspace(term, input) {
+  if (input.length === 0) return input;
+
+  if (term._core.buffer.x === 0 && term._core.buffer.y > 1) {
+    // Move up
+    term.write("\x1b[A");
+    // Move to the end
+    term.write("\x1b[" + term._core.buffer._cols + "G");
+    term.write(" ");
+  } else {
+    term.write("\b \b");
+  }
+  return input.substring(0, input.length - 1);
+}

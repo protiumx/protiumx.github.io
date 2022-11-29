@@ -11,7 +11,7 @@ const uname = {
   description: "print operating system name",
   args: 0,
   async exec(term, _args) {
-    term.writeln(info);
+    term.write(info);
   },
 };
 

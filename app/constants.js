@@ -8,6 +8,6 @@ export const TermColors = {
 };
 
 export const SHELL_PROMPT =
-  TermColors.Purple + "anonymous@protiumx.dev:~$ " + TermColors.Reset;
+  TermColors.Purple + "anonymous:~$ " + TermColors.Reset;
 
 export const HistorySize = 100;

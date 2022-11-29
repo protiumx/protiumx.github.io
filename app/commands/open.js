@@ -5,7 +5,7 @@ import fileSystem from "../file-system.js";
 const WebApps = [
   {
     name: "blog",
-    url: "https://protiumx.dev/blog/",
+    url: "https://protiumx.dev/blog/posts",
   },
   {
     name: "github",

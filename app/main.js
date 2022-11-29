@@ -4,7 +4,7 @@ import { handleBackspace, isPrintableKeyCode, sleep } from "./utils.js";
 import { exec } from "./commands/index.js";
 
 function printError(term, error) {
-  term.writeln(TermColors.Red + error);
+  term.write(TermColors.Red + error);
 }
 
 function prompt(term) {
@@ -20,6 +20,9 @@ function deleteCurrentInput(term, input) {
 }
 
 async function initTerminalSession(term) {
+  term.writeln(
+    'hi cybernaut. this is an info terminal.\r\nuse "help" to see the available commands'
+  );
   term.writeln("creating new session...");
   await sleep(1300);
   term.write(SHELL_PROMPT);
@@ -167,10 +170,10 @@ async function runTerminal() {
     cursorBlink: "block",
     scrollback: 1000,
     tabStopWidth: 4,
-    fontFamily: "monospace, courier-new, courier",
+    fontFamily: "'Fira Code', monospace",
     fontSize: 20,
     theme: {
-      background: "#060606",
+      background: "#000",
       cursor: "#c7157a",
       selection: "#c7157a",
       cursorAccent: "#c7157a",
@@ -183,7 +186,6 @@ async function runTerminal() {
       brightRed: "#cf442b",
     },
   });
-  // window.term = term;
 
   const fitAddon = new window.FitAddon.FitAddon();
   term.loadAddon(fitAddon);

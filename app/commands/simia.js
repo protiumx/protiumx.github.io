@@ -1,6 +1,7 @@
 import { handleBackspace, isPrintableKeyCode } from "../utils.js";
 
 const prompt = ">> ";
+const decoder = new TextDecoder("utf-8");
 
 const simia = {
   id: "simia",
@@ -13,13 +14,25 @@ const simia = {
     await this.start(term, onProcessExit);
   },
 
-  async load() {
+  async load(term) {
     const go = new Go();
     const res = await fetch("./wasm/simia.wasm");
     if (res.status !== 200) {
       throw new Error("couldn't load simia wasm: " + res.statusText);
     }
     const result = await WebAssembly.instantiateStreaming(res, go.importObject);
+
+    // Redirect write to xterm
+    let outputBuf = "";
+    window.fs.writeSync = (fd, buf) => {
+      outputBuf += decoder.decode(buf);
+      const nl = outputBuf.lastIndexOf("\n");
+      if (nl != -1) {
+        term.writeln(outputBuf.substr(0, nl));
+        outputBuf = outputBuf.substr(nl + 1);
+      }
+      return buf.length;
+    };
     go.run(result.instance);
   },
 
@@ -31,7 +44,7 @@ const simia = {
 
     if (!this.loaded) {
       term.writeln("loading...");
-      await this.load();
+      await this.load(term);
       this.loaded = true;
     }
 
@@ -57,7 +70,7 @@ const simia = {
 
           term.writeln("");
           const evaluated = window.simia(input);
-          if (evaluated !== "") {
+          if (evaluated !== "" && evaluated !== "nil") {
             term.writeln(evaluated);
           }
           input = "";

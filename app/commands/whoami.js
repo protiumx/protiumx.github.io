@@ -1,7 +1,7 @@
 import { TermColors } from "../constants.js";
 import { colorize } from "../utils.js";
 
-const LAST_UPDATE = "2022-11-17";
+const LAST_UPDATE = "2022-11-29";
 
 const whoami = {
   id: "whoami",

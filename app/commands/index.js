@@ -21,6 +21,16 @@ const SystemCommands = [
   ls,
 
   {
+    id: "id",
+    usage: "id command",
+    description: "returns user identity",
+    args: 0,
+    async exec(term) {
+      term.writeln("uid=001(anonymous)");
+    },
+  },
+
+  {
     id: "man",
     usage: "man command",
     description: "show manual pages for a command",

@@ -19,6 +19,32 @@ const SystemCommands = [
   download,
   exit,
   ls,
+  open,
+  randc,
+  rm,
+  simia,
+  uname,
+  whoami,
+
+  {
+    id: "help",
+    args: 0,
+    async exec(term, _args) {
+      term.writeln("available commands:");
+      // Add 3 tabs for spacing. Align each description to the first command description
+      const firstCommandSpacing = SystemCommands[0].id.length + 12;
+      for (const { id, description } of SystemCommands) {
+        if (id === "help") continue;
+
+        term.writeln(
+          "\t" +
+            colorize(TermColors.Green, id) +
+            getSpacing(firstCommandSpacing - id.length) +
+            description
+        );
+      }
+    },
+  },
 
   {
     id: "id",
@@ -51,37 +77,13 @@ const SystemCommands = [
       }
     },
   },
-
-  open,
-  randc,
-  rm,
-  simia,
-  uname,
-  whoami,
-
-  {
-    id: "help",
-    args: 0,
-    async exec(term, _args) {
-      term.writeln("available commands:");
-      // Add 3 tabs for spacing. Align each description to the first command description
-      const firstCommandSpacing = SystemCommands[0].id.length + 12;
-      for (const { id, description } of SystemCommands) {
-        if (id === "help") continue;
-
-        term.writeln(
-          "\t" +
-            colorize(TermColors.Green, id) +
-            getSpacing(firstCommandSpacing - id.length) +
-            description
-        );
-      }
-    },
-  },
 ];
 
-// Handle arguments check here to avoid duplication
+/**
+ * @returns {string|null} Process ID if command executed started a process
+ * */
 export async function exec(term, userInput, onProcessExit) {
+  // Handle arguments check here to avoid duplication
   const [input, ...args] = userInput.split(/\s+/);
   const command = SystemCommands.find((c) => c.id === input);
   if (!command) {

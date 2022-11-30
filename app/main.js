@@ -34,6 +34,9 @@ function pushCommandToHistory(store, command) {
     return;
   }
   store.push(command);
+  if (store.length > HistorySize) {
+    store.shift();
+  }
   setTimeout(() => localStorage.setItem("history", JSON.stringify(store)), 0);
 }
 
@@ -56,6 +59,7 @@ function createOnKeyHandler(term) {
   // Track command history
   let commandHistory = loadCommandHistory();
   let currentHistoryPosition = commandHistory.length;
+  // Only one process at a time
   let currentProcessId = null;
 
   function onProcessExit() {
@@ -76,7 +80,6 @@ function createOnKeyHandler(term) {
         }
 
         if (ev.key === "ArrowDown") {
-          // restore input
           if (currentHistoryPosition === commandHistory.length) return;
 
           currentHistoryPosition = Math.min(
@@ -131,19 +134,11 @@ function createOnKeyHandler(term) {
         term.writeln("");
 
         try {
-          const pId = await exec(term, userInput, onProcessExit);
-          if (pId) {
-            currentProcessId = pId;
-          }
+          currentProcessId = await exec(term, userInput, onProcessExit);
         } catch (e) {
           printError(term, e.message);
         }
 
-        if (commandHistory.length > HistorySize) {
-          commandHistory = commandHistory.slice(
-            HistorySize - commandHistory.length
-          );
-        }
         pushCommandToHistory(commandHistory, userInput);
         currentHistoryPosition = commandHistory.length;
 
@@ -190,6 +185,7 @@ async function runTerminal() {
   const fitAddon = new window.FitAddon.FitAddon();
   term.loadAddon(fitAddon);
   term.loadAddon(new window.WebLinksAddon.WebLinksAddon());
+
   term.open(container);
 
   fitAddon.fit();

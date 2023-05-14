@@ -11,16 +11,16 @@ const whoami = {
     term.writeln(colorize(TermColors.Green, "name: ") + "brian");
     term.writeln(
       colorize(TermColors.Green, "current position: ") +
-        "senior software engineer"
+        "cloud engineer"
     );
     term.writeln(
       colorize(TermColors.Green, "company: ") +
-        "Heartbeat Medical Solutions < https://heartbeat-med.de >"
+        "CrowdStrike < https://crowdstrike.com >"
     );
     term.writeln(colorize(TermColors.Green, "location: ") + "Munich, Germany");
     term.writeln(
       colorize(TermColors.Green, "fav languages: ") +
-        "[golang, rust, typescript]"
+        "[golang, rust, c]"
     );
     term.writeln(
       colorize(TermColors.Green, "hobbies: ") +

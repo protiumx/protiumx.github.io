@@ -1,7 +1,7 @@
 import { TermColors } from "../constants.js";
 import { colorize } from "../utils.js";
 
-const LAST_UPDATE = "2023-05-14";
+const LAST_UPDATE = "2023-08-15";
 
 const whoami = {
   id: "whoami",
@@ -11,20 +11,20 @@ const whoami = {
     term.writeln(colorize(TermColors.Green, "name: ") + "brian");
     term.writeln(
       colorize(TermColors.Green, "current position: ") +
-        "cloud engineer"
+      "cloud engineer"
     );
     term.writeln(
       colorize(TermColors.Green, "company: ") +
-        "CrowdStrike < https://crowdstrike.com >"
+      "CrowdStrike < https://crowdstrike.com >"
     );
     term.writeln(colorize(TermColors.Green, "location: ") + "Munich, Germany");
     term.writeln(
       colorize(TermColors.Green, "fav languages: ") +
-        "[golang, rust, c]"
+      "[golang, rust, c]"
     );
     term.writeln(
       colorize(TermColors.Green, "hobbies: ") +
-        "[photography, music, electronics]"
+      "[photography, music, electronics]"
     );
     term.writeln(
       colorize(TermColors.Green, "blog: ") + "https://protiumx.dev/blog"

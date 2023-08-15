@@ -2,6 +2,7 @@ import { HistorySize, TermColors, SHELL_PROMPT } from "./constants.js";
 import fileSystem from "./file-system.js";
 import { handleBackspace, isPrintableKeyCode, sleep } from "./utils.js";
 import { exec } from "./commands/index.js";
+import { exec as exit } from "./commands/exit.js";
 
 function printError(term, error) {
   term.write(TermColors.Red + error);
@@ -118,6 +119,14 @@ function createOnKeyHandler(term) {
         break;
       }
 
+      case "d": {
+        if (ev.ctrlKey) {
+          await exit(term);
+          return;
+        }
+        break;
+      }
+
       case "Backspace": {
         userInput = handleBackspace(term, userInput);
         return;
@@ -196,7 +205,7 @@ async function runTerminal() {
   term.onKey(createOnKeyHandler(term));
 }
 
-window.onload = function () {
+window.onload = function() {
   fileSystem.load().catch(console.error);
   runTerminal().catch(console.error);
 };

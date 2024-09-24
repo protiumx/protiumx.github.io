@@ -22,7 +22,7 @@ function deleteCurrentInput(term, input) {
 
 async function initTerminalSession(term) {
   term.writeln(
-    'hi cybernaut. this is an info terminal.\r\nuse "help" to see the available commands'
+    'hi cybernaut. this is an info terminal.\r\nuse "help" to see the available commands.'
   );
   term.writeln("creating new session...");
   await sleep(1300);

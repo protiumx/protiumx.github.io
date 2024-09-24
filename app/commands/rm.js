@@ -3,7 +3,7 @@ import { TermColors } from '../constants.js';
 import { colorize } from '../utils.js';
 
 function parseGlobPattern(pattern) {
-  switch(pattern) {
+  switch (pattern) {
     case '*':
     case '/*':
       return fileSystem.getAll();
